@@ -17,7 +17,7 @@ router.get('/:id', (req, res)=>{
     const {id} = req.params;
     mysqlConecction.query('SELECT D.* FROM DETALLE D, FACTURA F, CLIENTE C WHERE ? = F.ID_CLIENTE AND D.ID_FACTURA = F.NUM_FACTURA', [id], (err, rows)=>{
         if(!err){
-            res.json(val_factura(rows[0].PRECIO, rows[0].CANTIDAD));
+            res.json(val_factura(rows[0].PRECIO, rows[0].CANTIDAD))
         } else {
             console.log(err)
         }
@@ -31,7 +31,6 @@ const val_factura = (valor, cantidad) =>{
         return "No aplica descuento: " + valor;
     }
 }
-
 
 
 module.exports = router;
